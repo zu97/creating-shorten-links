@@ -1,0 +1,24 @@
+<div class="container my-3 py-3">
+  <h1 class="text-center my-3 py-3">Shorten your link!</h1>
+  <form class="mb-3 pb-3" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <input type="text"
+             class="form-control"
+             name="originalUrl"
+             placeholder="Enter URL here"
+             [(ngModel)]="originalUrl"
+      />
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="!isValidForm()">
+        <app-loader [isLoading]="isLinkRequested" size="sm">Shorten!</app-loader>
+      </button>
+    </div>
+  </form>
+  <div class="text-center mt-3 pt-3" *ngIf="link">
+    <p>Your link now looks like this:</p>
+    <a [href]="apiUrl + '/' + link.shortUrl" target="_blank">
+      {{ apiUrl + '/' + link.shortUrl }}
+    </a>
+  </div>
+</div>
